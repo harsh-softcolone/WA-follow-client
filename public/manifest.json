@@ -18,7 +18,7 @@
     "https://commondatastorage.googleapis.com/*"
   ],
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; connect-src 'self' https://jsonplaceholder.typicode.com/todos https://www.w3.org https://commondatastorage.googleapis.com;"
+    "extension_pages": "default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://jsonplaceholder.typicode.com/todos https://www.w3.org https://commondatastorage.googleapis.com;"
   },
   "background": {
     "service_worker": "background.js"
