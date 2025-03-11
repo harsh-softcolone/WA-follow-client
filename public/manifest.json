@@ -4,18 +4,21 @@
   "description": "WhatsApp Web Extension with Login",
   "version": "1.0.0",
   "action": {
-    "default_title": "WhatsApp Web Extension"
+    "default_title": "WhatsApp Web Extension",
+    "default_icon": "vite.svg",
+    "default_popup": "popup.html"
   },
-  "permissions": ["tabs", "activeTab", "nativeMessaging"],
+  "permissions": ["tabs", "activeTab", "nativeMessaging", "storage"],
   "host_permissions": [
     "https://web.whatsapp.com/*",
     "https://dog.ceo/*",
     "https://images.dog.ceo/*",
     "https://www.w3.org/*",
+    "https://jsonplaceholder.typicode.com/todos/*",
     "https://commondatastorage.googleapis.com/*"
   ],
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; connect-src 'self' https://dog.ceo https://images.dog.ceo https://www.w3.org https://commondatastorage.googleapis.com;"
+    "extension_pages": "default-src 'self'; connect-src 'self' https://jsonplaceholder.typicode.com/todos https://www.w3.org https://commondatastorage.googleapis.com;"
   },
   "background": {
     "service_worker": "background.js"
