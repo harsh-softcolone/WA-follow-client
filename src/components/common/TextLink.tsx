@@ -11,7 +11,7 @@ const TextLink = ({ name, onClick, className }: TextLinkProps) => {
     <div>
       <p
         className={cn(
-          "cursor-pointer font-inter text-[12px] text-sub-heading",
+          "cursor-pointer font-inter text-[12px] leading-normal text-sub-heading",
           className
         )}
         onClick={onClick}

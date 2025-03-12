@@ -4,8 +4,8 @@ import "./styles/content.css";
 const isWhatsAppFullyLoaded = (): boolean => {
   // Check if main WhatsApp container is loaded
   const chatList = document.querySelectorAll("div[role=listitem]").length;
-
-  return chatList > 0;
+  const appWrapper = document.querySelector(".app-wrapper-web");
+  return chatList > 0 && !!appWrapper;
 };
 
 const waitForWhatsAppLoad = (): Promise<void> => {
@@ -47,11 +47,6 @@ const injectExtension = async () => {
       mountPoint.id = "whatsapp-extension-root";
       document.body.appendChild(mountPoint);
 
-      // const img = document.createElement("img");
-      // img.src = chrome.runtime.getURL("logo.png");
-      // document.body.append(img);
-      // createAndAppendLogo();
-
       // Create script element for main.js
       const script = document.createElement("script");
       script.src = chrome.runtime.getURL("main.js");
@@ -63,6 +58,7 @@ const injectExtension = async () => {
   }
 };
 
+// Watch for both hash changes and history state updates
 const watchForNavigationChanges = () => {
   let lastUrl = location.href;
 
@@ -75,10 +71,13 @@ const watchForNavigationChanges = () => {
   }).observe(document, { subtree: true, childList: true });
 };
 
+// Initial injection
 injectExtension();
 
+// Start watching for navigation changes
 watchForNavigationChanges();
 
+// Handle messages
 window.addEventListener("message", (event) => {
   if (event.source !== window) return;
   const message = event.data;

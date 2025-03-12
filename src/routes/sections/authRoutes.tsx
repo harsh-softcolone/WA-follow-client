@@ -1,6 +1,6 @@
 import AuthLayout from "@/layouts/auth/AuthLayout";
-import LoginPage from "@/pages/auth/login";
 import { Outlet } from "react-router";
+import LoginPage from "@/pages/auth/login";
 
 export const authRoutes = [
   {
@@ -12,6 +12,7 @@ export const authRoutes = [
     ),
     children: [
       {
+        index: true,
         path: "login",
         element: <LoginPage />,
       },

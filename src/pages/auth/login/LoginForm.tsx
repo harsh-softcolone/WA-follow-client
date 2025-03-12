@@ -32,6 +32,7 @@ const LoginForm = () => {
     try {
       console.log(data);
       if (data?.email && data?.password) {
+        localStorage.setItem("userMobileNumber", "8485963857");
         navigate("/home");
       }
     } catch (error) {
@@ -43,15 +44,15 @@ const LoginForm = () => {
       {/* Logo and Welcome */}
       <div className="mb-[30px] flex w-full flex-col items-center justify-center">
         {theme === "dark" ? (
-          <img src={whiteLogo} alt="followClientLogo" className="w-[140px]" />
+          <img src={whiteLogo} alt="followClientLogo" className="w-[160px]" />
         ) : (
-          <img src={darkLogo} alt="followClientLogo" className="w-[140px]" />
+          <img src={darkLogo} alt="followClientLogo" className="w-[160px]" />
         )}
         <div className="pt-[32px]">
-          <h1 className="text-center font-inter text-[18px] font-semibold text-heading">
+          <h1 className="text-center font-inter text-[18px] font-semibold text-heading leading-normal">
             Welcome
           </h1>
-          <p className="mt-[8px] text-center font-inter text-[13px] text-gray-400 text-sub-heading">
+          <p className="mt-[8px] text-center font-inter text-[13px] text-gray-400 text-sub-heading leading-normal">
             Please sign in to your account
           </p>
         </div>
@@ -86,12 +87,12 @@ const LoginForm = () => {
               <TextLink
                 name="Don't have an account yet?"
                 onClick={() => {}}
-                className="text-center text-[13px]"
+                className="text-center text-[13px] cursor-default"
               />
               <CustomButton
                 variant="outlined"
                 name="Create account"
-                className="mt-[14px]"
+                className="mt-[14px] border-2 border-solid border-input-border"
                 onClick={() => {}}
               />
             </div>

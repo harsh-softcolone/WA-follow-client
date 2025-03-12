@@ -1,5 +1,6 @@
 import { Navigate, useRoutes } from "react-router";
 import { authRoutes } from "@/routes/sections/authRoutes";
+import { AppRoutes } from "@/routes/sections/AppRoutes";
 
 const Router = () => {
   return useRoutes([
@@ -8,7 +9,7 @@ const Router = () => {
       element: <Navigate to="/login" />,
     },
     ...authRoutes,
-    // ...sidebarRoutes,
+    ...AppRoutes,
   ]);
 };
 export default Router;

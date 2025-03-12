@@ -66,12 +66,9 @@ const CustomFormInput = React.forwardRef<HTMLInputElement, InputProps>(
                 disabled={isDisabled}
                 placeholder={placeHolder}
                 id={name}
-                style={{
-                  padding: "10px",
-                }}
                 className={cn(
-                  "w-full rounded-[5px] bg-input font-inter text-[14px] outline-none placeholder:text-sub-heading",
-                  isPassword && showPasswordToggle && "pr-10",
+                  "w-full rounded-[5px] bg-input font-inter py-[10px] pl-[10px] pr-[40px] text-[14px] leading-normal outline-none placeholder:text-sub-heading",
+                  // isPassword && showPasswordToggle && "pr-10",
                   className
                 )}
                 value={field.value || ""}
@@ -86,7 +83,7 @@ const CustomFormInput = React.forwardRef<HTMLInputElement, InputProps>(
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-icon hover:text-heading cursor-pointer z-[99999]"
                 >
                   {showPassword ? (
                     <Eye className="h-4 w-4" />
@@ -100,7 +97,7 @@ const CustomFormInput = React.forwardRef<HTMLInputElement, InputProps>(
             {(error?.message || helperText) && (
               <p
                 className={cn(
-                  "!mt-1 text-xs",
+                  "!mt-1 text-xs leading-normal",
                   error ? "text-red-500" : "text-gray-500"
                 )}
               >

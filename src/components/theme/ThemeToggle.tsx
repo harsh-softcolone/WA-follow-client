@@ -1,4 +1,5 @@
-import { Moon, Sun } from "lucide-react";
+import { FaMoon } from "react-icons/fa6";
+import { FaSun } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useThemeHook } from "@/hooks/useThemeHook";
 
@@ -17,9 +18,9 @@ export function ThemeToggle() {
       className="rounded-full"
     >
       {theme === "dark" ? (
-        <Sun className="h-[1.2rem] w-[1.2rem] text-yellow-500 transition-all" />
+        <FaSun className="h-[1.2rem] w-[1.2rem] text-yellow-500 transition-all" />
       ) : (
-        <Moon className="h-[1.2rem] w-[1.2rem] text-slate-900 transition-all" />
+        <FaMoon className="h-[1.2rem] w-[1.2rem] text-slate-900 transition-all" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>
