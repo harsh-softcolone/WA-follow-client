@@ -1,4 +1,4 @@
-import AppLayout from "@/layouts/app/AppLayout";
+import ProtectedAppLayout from "@/layouts/app/ProtectedAppLayout";
 import HomePage from "@/pages/app/home";
 import NotificationPage from "@/pages/app/notification";
 import { Outlet } from "react-router";
@@ -7,9 +7,9 @@ export const AppRoutes = [
   {
     path: "/",
     element: (
-      <AppLayout>
+      <ProtectedAppLayout>
         <Outlet />
-      </AppLayout>
+      </ProtectedAppLayout>
     ),
     children: [
       { index: true, path: "home", element: <HomePage /> },

@@ -10,6 +10,7 @@
   },
   "permissions": ["tabs", "activeTab", "nativeMessaging", "storage"],
   "host_permissions": [
+    "http://192.168.0.137:5002/api/v1/admin/auth/extension/login",
     "https://web.whatsapp.com/*",
     "https://dog.ceo/*",
     "https://images.dog.ceo/*",
@@ -18,7 +19,7 @@
     "https://commondatastorage.googleapis.com/*"
   ],
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://jsonplaceholder.typicode.com/todos https://www.w3.org https://commondatastorage.googleapis.com;"
+    "extension_pages": "default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://jsonplaceholder.typicode.com/todos http://192.168.0.137:5002/api/v1/admin/auth/extension/login https://www.w3.org https://commondatastorage.googleapis.com;"
   },
   "background": {
     "service_worker": "background.js"

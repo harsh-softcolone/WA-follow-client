@@ -8,10 +8,15 @@ import whiteLogo from "@/assets/whiteLogo.webp";
 import CustomFormInput from "@/components/form/CustomFormInput";
 import TextLink from "@/components/common/TextLink";
 import CustomButton from "@/components/common/CustomButton";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import useAuth from "@/hooks/useAuth";
 
 const LoginForm = () => {
   const { theme } = useThemeHook();
   const navigate = useNavigate();
+  const { handleSetUser } = useAuth();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const defaultValues = {
     email: "",
@@ -32,13 +37,58 @@ const LoginForm = () => {
     try {
       console.log(data);
       if (data?.email && data?.password) {
-        localStorage.setItem("userMobileNumber", "8485963857");
-        navigate("/home");
+        setLoading(true);
+        window.postMessage(
+          {
+            type: "LOGIN_REQUEST",
+            data: { email: data?.email, password: data?.password },
+          },
+          "*"
+        );
       }
     } catch (error) {
       console.error("Login failed:", error);
     }
   });
+
+  // Set up the event listener once when component mounts
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data.type === "LOGIN_RESPONSE") {
+        console.log(event.data.response.data);
+        setLoading(false);
+        // Make sure we're accessing the correct data structure
+        if (event.data.response.success) {
+          if (event?.data?.response?.data?.statusCode === 200) {
+            toast.success(event.data.response.data.message);
+            handleSetUser(event.data.response.data.data);
+            localStorage.setItem(
+              "userMobileNumber",
+              event.data.response.data.data.phoneNumber
+            );
+            localStorage.setItem(
+              "accessToken",
+              event.data.response.data.data.accessToken
+            );
+            navigate("/home");
+          } else {
+            toast.error(event.data.response.data.message);
+          }
+        } else {
+          console.log("Login failed:", event.data);
+          toast.error(event.data.response.details.message);
+        }
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    // Clean up the event listener when component unmounts
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
+
   return (
     <div>
       {/* Logo and Welcome */}
@@ -82,7 +132,11 @@ const LoginForm = () => {
                 className="text-[12px] hover:underline"
               />
             </div>
-            <CustomButton name="Login" type="submit" isLoading={isSubmitting} />
+            <CustomButton
+              name="Login"
+              type="submit"
+              isLoading={isSubmitting || loading}
+            />
             <div>
               <TextLink
                 name="Don't have an account yet?"

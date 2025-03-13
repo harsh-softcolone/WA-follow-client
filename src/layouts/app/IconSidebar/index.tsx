@@ -20,7 +20,7 @@ const IconSidebar = () => {
             key={route.path}
             {...route}
             isActive={isActive(route.path)}
-            onClick={() => navigate(route.path)}
+            onClick={() => navigate(`${route.path}`)}
           />
         ))}
       </div>

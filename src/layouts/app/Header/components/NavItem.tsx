@@ -12,7 +12,7 @@ const NavItem = ({ label, count, isActive = false, onClick }: NavItemProps) => {
     <button
       onClick={onClick}
       className={cn(
-        "px-3 py-2 flex items-center text-[14px] gap-1.5 border-r border-border",
+        "px-3 py-2 flex items-center rounded-[3px] text-[14px] gap-1.5 border-r border-border border-solid",
         isActive ? "bg-[#b5d3373d]" : "hover:bg-tag"
       )}
     >
